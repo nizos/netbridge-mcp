@@ -41,7 +41,7 @@
     "vitest": "^1.2.0"
   },
   "engines": {
-    "node": ">=20.0.0"
+    "node": ">=22.0.0"
   },
   "packageManager": "yarn@1.22.21",
   "keywords": [
