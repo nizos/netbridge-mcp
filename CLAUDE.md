@@ -107,6 +107,14 @@ browser-network/
 - **Formatting**: `yarn format` (check only: `yarn format:check`)
 - **Fix issues**: `yarn check:fix` (format and lint:fix)
 
+### Pre-commit Hooks
+
+The project uses husky and lint-staged to ensure code quality before commits:
+
+- **Automatic formatting**: Prettier formats all staged files
+- **Linting**: ESLint checks and fixes TypeScript files
+- **Commit message validation**: Enforces conventional commit format
+
 ### Code Review Checklist
 
 - All behaviors have corresponding tests
