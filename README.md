@@ -1,7 +1,7 @@
-# Browser Network MCP Solution
+# NetBridge MCP
 
-[![CI](https://github.com/nizos/browser-network/actions/workflows/ci.yml/badge.svg)](https://github.com/nizos/browser-network/actions/workflows/ci.yml)
-[![Security](https://github.com/nizos/browser-network/actions/workflows/security.yml/badge.svg)](https://github.com/nizos/browser-network/actions/workflows/security.yml)
+[![CI](https://github.com/nizos/netbridge-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/nizos/netbridge-mcp/actions/workflows/ci.yml)
+[![Security](https://github.com/nizos/netbridge-mcp/actions/workflows/security.yml/badge.svg)](https://github.com/nizos/netbridge-mcp/actions/workflows/security.yml)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.3-blue.svg)](https://www.typescriptlang.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Yarn](https://img.shields.io/badge/Yarn-1.22-2C8EBB.svg)](https://yarnpkg.com/)
@@ -14,7 +14,7 @@ A TypeScript-based Model Context Protocol (MCP) solution that enables AI agents 
 This project uses a monorepo structure with Yarn workspaces:
 
 ```
-browser-network/
+netbridge-mcp/
 ├── packages/
 │   ├── browser-extension/   # Chrome/Firefox extension
 │   ├── node-server/        # WebSocket middleware server
@@ -87,8 +87,8 @@ An MCP server that provides tools for AI agents to interact with the captured ne
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/browser-network.git
-cd browser-network
+git clone https://github.com/nizos/netbridge-mcp.git
+cd netbridge-mcp
 
 # Install dependencies
 yarn install
@@ -109,7 +109,7 @@ yarn type-check        # Check TypeScript types across all packages
 yarn build            # Build all packages
 
 # Package-specific commands
-yarn workspace @browser-network/browser-extension test
-yarn workspace @browser-network/node-server dev
-yarn workspace @browser-network/mcp-server dev
+yarn workspace @netbridge-mcp/browser-extension test
+yarn workspace @netbridge-mcp/node-server dev
+yarn workspace @netbridge-mcp/mcp-server dev
 ```

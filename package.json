@@ -1,5 +1,5 @@
 {
-  "name": "browser-network",
+  "name": "netbridge-mcp",
   "version": "1.0.0",
   "description": "MCP solution for browser network traffic analysis",
   "private": true,

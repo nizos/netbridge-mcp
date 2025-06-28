@@ -44,7 +44,7 @@ The Browser Network MCP Solution enables AI agents to effectively work with brow
 ## Project Structure
 
 ```
-browser-network/
+netbridge-mcp/
 ├── packages/
 │   ├── browser-extension/
 │   │   ├── src/
@@ -97,7 +97,7 @@ browser-network/
 - **All tests**: `yarn test`
 - **Watch mode**: `yarn test:watch`
 - **Coverage**: `yarn test:coverage`
-- **Specific package**: `yarn workspace @browser-network/[package-name] test`
+- **Specific package**: `yarn workspace @netbridge-mcp/[package-name] test`
 
 ### Code Quality Checks
 

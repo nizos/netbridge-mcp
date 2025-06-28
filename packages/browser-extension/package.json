@@ -1,5 +1,5 @@
 {
-  "name": "@browser-network/browser-extension",
+  "name": "@netbridge-mcp/browser-extension",
   "version": "1.0.0",
   "description": "Browser extension for capturing network traffic",
   "private": true,

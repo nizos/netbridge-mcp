@@ -1,5 +1,5 @@
 {
-  "name": "@browser-network/mcp-server",
+  "name": "@netbridge-mcp/mcp-server",
   "version": "1.0.0",
   "description": "MCP server for browser network data access",
   "private": true,

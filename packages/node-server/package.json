@@ -1,5 +1,5 @@
 {
-  "name": "@browser-network/node-server",
+  "name": "@netbridge-mcp/node-server",
   "version": "1.0.0",
   "description": "Node.js middleware server for browser network data",
   "private": true,
