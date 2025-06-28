@@ -1,5 +1,7 @@
 # NetBridge MCP
 
+> ⚠️ **This project is under active development and not yet ready for production use.**
+
 [![CI](https://github.com/nizos/netbridge-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/nizos/netbridge-mcp/actions/workflows/ci.yml)
 [![Security](https://github.com/nizos/netbridge-mcp/actions/workflows/security.yml/badge.svg)](https://github.com/nizos/netbridge-mcp/actions/workflows/security.yml)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.3-blue.svg)](https://www.typescriptlang.org/)
