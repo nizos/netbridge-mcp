@@ -92,6 +92,14 @@ browser-network/
 - **Coverage**: `yarn test:coverage`
 - **Specific package**: `yarn workspace @browser-network/[package-name] test`
 
+### Code Quality Checks
+
+- **Run all checks**: `yarn check` (type-check, lint, format, test)
+- **Type checking**: `yarn type-check`
+- **Linting**: `yarn lint` (auto-fix: `yarn lint:fix`)
+- **Formatting**: `yarn format` (check only: `yarn format:check`)
+- **Fix issues**: `yarn check:fix` (format and lint:fix)
+
 ### Code Review Checklist
 - All behaviors have corresponding tests
 - No `any` types or unsafe assertions

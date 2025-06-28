@@ -1,0 +1,17 @@
+# Dependencies
+node_modules/
+.yarn/
+
+# Build outputs
+dist/
+build/
+coverage/
+
+# Config files that don't need linting
+*.config.js
+*.config.cjs
+.eslintrc.cjs
+
+# Misc
+*.min.js
+*.d.ts
