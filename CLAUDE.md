@@ -44,15 +44,18 @@ browser-network/
 ├── packages/
 │   ├── browser-extension/
 │   │   ├── src/
-│   │   ├── tests/
+│   │   │   ├── *.ts         # Source files
+│   │   │   └── *.test.ts    # Colocated test files
 │   │   └── package.json
 │   ├── node-server/
 │   │   ├── src/
-│   │   ├── tests/
+│   │   │   ├── *.ts         # Source files
+│   │   │   └── *.test.ts    # Colocated test files
 │   │   └── package.json
 │   └── mcp-server/
 │       ├── src/
-│       ├── tests/
+│       │   ├── *.ts         # Source files
+│       │   └── *.test.ts    # Colocated test files
 │       └── package.json
 ├── shared/
 │   ├── schemas/        # Shared Zod schemas
@@ -62,6 +65,7 @@ browser-network/
 
 ## Testing Guidelines
 
+- **Colocated tests**: Test files are placed next to source files with `.test.ts` or `.spec.ts` suffix
 - **Tests define behavior**: Each test documents a specific business requirement
 - **Real schemas only**: Import schemas from production code, never redefine in tests
 - **Test data factories**: Create functions that generate test data with sensible defaults
@@ -70,12 +74,23 @@ browser-network/
 
 ## Development Workflow
 
+### Initial Setup
+1. **Install dependencies**: Run `yarn install` from the root directory
+2. **Verify setup**: Run `yarn test` to ensure all tests pass
+3. **Type checking**: Run `yarn type-check` to verify TypeScript configuration
+
 ### TDD Process
 1. **Start with behavior**: Define what the system should do, not how
 2. **Write failing test**: Create test that describes desired behavior
 3. **Minimal implementation**: Write just enough code to pass the test
 4. **Refactor if valuable**: Improve code structure while keeping tests green
 5. **Iterate**: Repeat cycle for next behavior
+
+### Running Tests
+- **All tests**: `yarn test`
+- **Watch mode**: `yarn test:watch`
+- **Coverage**: `yarn test:coverage`
+- **Specific package**: `yarn workspace @browser-network/[package-name] test`
 
 ### Code Review Checklist
 - All behaviors have corresponding tests

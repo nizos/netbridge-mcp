@@ -1,12 +1,30 @@
 {
   "name": "browser-network",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "MCP solution for browser network traffic analysis",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "build": "yarn workspaces run build",
+    "type-check": "tsc --noEmit"
   },
-  "keywords": [],
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@vitest/coverage-v8": "^1.2.0",
+    "typescript": "^5.3.3",
+    "vitest": "^1.2.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "packageManager": "yarn@1.22.21",
+  "keywords": ["mcp", "browser", "network", "extension"],
   "author": "",
-  "license": "ISC"
+  "license": "MIT"
 }
