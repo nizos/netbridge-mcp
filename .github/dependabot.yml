@@ -30,11 +30,6 @@ updates:
       prefix: 'chore'
       prefix-development: 'chore'
       include: 'scope'
-    labels:
-      - 'dependencies'
-      - 'automated'
-    assignees:
-      - '@nizos'
 
   # GitHub Actions
   - package-ecosystem: 'github-actions'
@@ -47,8 +42,3 @@ updates:
     commit-message:
       prefix: 'ci'
       include: 'scope'
-    labels:
-      - 'github-actions'
-      - 'automated'
-    assignees:
-      - '@nizos'
