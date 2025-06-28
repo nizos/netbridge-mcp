@@ -1,0 +1,63 @@
+version: 2
+updates:
+  # Enable version updates for npm
+  - package-ecosystem: 'npm'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+      day: 'monday'
+      time: '09:00'
+      timezone: 'UTC'
+    open-pull-requests-limit: 10
+    groups:
+      # Group all development dependencies together
+      dev-dependencies:
+        patterns:
+          - '*'
+        dependency-type: 'development'
+        update-types:
+          - 'minor'
+          - 'patch'
+      # Group all production dependencies together
+      prod-dependencies:
+        patterns:
+          - '*'
+        dependency-type: 'production'
+        update-types:
+          - 'minor'
+          - 'patch'
+    # Separate PRs for major version updates
+    ignore:
+      # Ignore specific dependencies if needed
+      # - dependency-name: "example-package"
+      #   versions: ["1.x", "2.x"]
+    commit-message:
+      prefix: 'chore'
+      prefix-development: 'chore'
+      include: 'scope'
+    labels:
+      - 'dependencies'
+      - 'automated'
+    assignees:
+      - '@nizos'
+    reviewers:
+      - '@nizos'
+
+  # GitHub Actions
+  - package-ecosystem: 'github-actions'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+      day: 'monday'
+      time: '09:00'
+      timezone: 'UTC'
+    commit-message:
+      prefix: 'ci'
+      include: 'scope'
+    labels:
+      - 'github-actions'
+      - 'automated'
+    assignees:
+      - '@nizos'
+    reviewers:
+      - '@nizos'
