@@ -35,8 +35,6 @@ updates:
       - 'automated'
     assignees:
       - '@nizos'
-    reviewers:
-      - '@nizos'
 
   # GitHub Actions
   - package-ecosystem: 'github-actions'
@@ -53,6 +51,4 @@ updates:
       - 'github-actions'
       - 'automated'
     assignees:
-      - '@nizos'
-    reviewers:
       - '@nizos'
