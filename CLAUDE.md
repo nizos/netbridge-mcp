@@ -9,8 +9,9 @@ The Browser Network MCP Solution enables AI agents to effectively work with brow
 ## Core Development Principles
 
 ### 1. Test-Driven Development (TDD)
+
 - **Tests always come first**: Write failing tests before any implementation code - no exceptions
-- **Red-Green-Refactor cycle**: 
+- **Red-Green-Refactor cycle**:
   - Red: Write a failing test that documents expected business behavior
   - Green: Write minimal code to make the test pass
   - Refactor: Improve the code while keeping tests green
@@ -18,6 +19,7 @@ The Browser Network MCP Solution enables AI agents to effectively work with brow
 - **Black box testing**: Test public APIs only, internal implementation is invisible
 
 ### 2. TypeScript & Schema-First Development
+
 - **Zero tolerance for `any`**: Never use `any` types or type assertions - use `unknown` when type is genuinely unknown
 - **Schema-first approach**: Define schemas using Zod (or other Standard Schema compliant libraries), then derive types
 - **Type preferences**: Always use `type` declarations over `interface`
@@ -25,6 +27,7 @@ The Browser Network MCP Solution enables AI agents to effectively work with brow
 - **Single source of truth**: Define each schema once, derive types using inference
 
 ### 3. Functional Programming Patterns
+
 - **Immutability by default**: Data structures are never modified after creation
 - **Pure functions only**: Same input always produces same output, no side effects
 - **Function composition**: Build complex behavior by composing simple, focused functions
@@ -32,6 +35,7 @@ The Browser Network MCP Solution enables AI agents to effectively work with brow
 - **Flat structure**: Maximum nesting depth of 2 levels, use early returns and guard clauses
 
 ### 4. Function Design
+
 - **Options objects by default**: Functions accept a single options object instead of multiple parameters
 - **Avoid boolean flags**: Replace with descriptive string unions or separate options
 - **Single parameter exceptions**: Only for simple transforms and established patterns (like `map` callbacks)
@@ -75,11 +79,13 @@ browser-network/
 ## Development Workflow
 
 ### Initial Setup
+
 1. **Install dependencies**: Run `yarn install` from the root directory
 2. **Verify setup**: Run `yarn test` to ensure all tests pass
 3. **Type checking**: Run `yarn type-check` to verify TypeScript configuration
 
 ### TDD Process
+
 1. **Start with behavior**: Define what the system should do, not how
 2. **Write failing test**: Create test that describes desired behavior
 3. **Minimal implementation**: Write just enough code to pass the test
@@ -87,6 +93,7 @@ browser-network/
 5. **Iterate**: Repeat cycle for next behavior
 
 ### Running Tests
+
 - **All tests**: `yarn test`
 - **Watch mode**: `yarn test:watch`
 - **Coverage**: `yarn test:coverage`
@@ -101,6 +108,7 @@ browser-network/
 - **Fix issues**: `yarn check:fix` (format and lint:fix)
 
 ### Code Review Checklist
+
 - All behaviors have corresponding tests
 - No `any` types or unsafe assertions
 - All data remains immutable
@@ -109,6 +117,7 @@ browser-network/
 - Tests use real schemas from shared modules
 
 ### Commit Guidelines
+
 - **Atomic commits**: Each commit represents one logical change with its tests
 - **Test and implementation together**: Never separate tests from the code they test
 - **Explain why, not what**: Commit messages should explain the reason for the change

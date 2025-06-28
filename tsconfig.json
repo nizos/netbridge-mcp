@@ -3,7 +3,7 @@
     "target": "ES2022",
     "module": "ES2022",
     "lib": ["ES2022"],
-    
+
     /* Strict Type-Checking Options */
     "strict": true,
     "noImplicitAny": true,
@@ -13,7 +13,7 @@
     "strictPropertyInitialization": true,
     "noImplicitThis": true,
     "alwaysStrict": true,
-    
+
     /* Additional Checks */
     "noUnusedLocals": true,
     "noUnusedParameters": true,
@@ -24,7 +24,7 @@
     "noImplicitOverride": true,
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
-    
+
     /* Module Resolution Options */
     "moduleResolution": "bundler",
     "esModuleInterop": true,
@@ -32,16 +32,16 @@
     "resolveJsonModule": true,
     "forceConsistentCasingInFileNames": true,
     "verbatimModuleSyntax": true,
-    
+
     /* Emit Options */
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
     "removeComments": true,
     "composite": true,
-    
+
     /* Advanced Options */
     "skipLibCheck": true
   },
-  "exclude": ["node_modules", "dist", "coverage", "**/*.test.ts", "**/*.spec.ts", "**/*.test.tsx", "**/*.spec.tsx"]
+  "exclude": ["node_modules", "dist", "coverage"]
 }

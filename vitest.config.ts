@@ -14,16 +14,16 @@ export default defineConfig({
         '**/*.config.*',
         '**/mockData/**',
         '**/*.test.ts',
-        '**/*.spec.ts'
+        '**/*.spec.ts',
       ],
       thresholds: {
         lines: 80,
         functions: 80,
         branches: 80,
-        statements: 80
-      }
+        statements: 80,
+      },
     },
     include: ['packages/*/src/**/*.test.ts', 'packages/*/src/**/*.spec.ts'],
-    exclude: ['node_modules', 'dist', 'coverage']
-  }
+    exclude: ['node_modules', 'dist', 'coverage'],
+  },
 })

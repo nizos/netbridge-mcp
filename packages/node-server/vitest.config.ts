@@ -1,6 +1,7 @@
-import { defineConfig } from 'vitest/config'
-import { fileURLToPath } from 'node:url'
 import { dirname, resolve } from 'node:path'
+import { fileURLToPath } from 'node:url'
+
+import { defineConfig } from 'vitest/config'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
@@ -18,14 +19,14 @@ export default defineConfig({
         'dist/**',
         '**/*.d.ts',
         '**/*.config.*',
-        'tests/**'
-      ]
-    }
+        'tests/**',
+      ],
+    },
   },
   resolve: {
     alias: {
       '@': resolve(__dirname, './src'),
-      '@shared': resolve(__dirname, '../../shared')
-    }
-  }
+      '@shared': resolve(__dirname, '../../shared'),
+    },
+  },
 })

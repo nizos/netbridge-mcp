@@ -1,6 +1,7 @@
-import { defineConfig } from 'vitest/config'
-import { fileURLToPath } from 'node:url'
 import { dirname, resolve } from 'node:path'
+import { fileURLToPath } from 'node:url'
+
+import { defineConfig } from 'vitest/config'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
@@ -8,7 +9,12 @@ export default defineConfig({
   test: {
     globals: false,
     environment: 'jsdom',
-    include: ['src/**/*.test.ts', 'src/**/*.spec.ts', 'src/**/*.test.tsx', 'src/**/*.spec.tsx'],
+    include: [
+      'src/**/*.test.ts',
+      'src/**/*.spec.ts',
+      'src/**/*.test.tsx',
+      'src/**/*.spec.tsx',
+    ],
     exclude: ['node_modules', 'dist'],
     coverage: {
       provider: 'v8',
@@ -18,14 +24,14 @@ export default defineConfig({
         'dist/**',
         '**/*.d.ts',
         '**/*.config.*',
-        'tests/**'
-      ]
-    }
+        'tests/**',
+      ],
+    },
   },
   resolve: {
     alias: {
       '@': resolve(__dirname, './src'),
-      '@shared': resolve(__dirname, '../../shared')
-    }
-  }
+      '@shared': resolve(__dirname, '../../shared'),
+    },
+  },
 })

@@ -23,7 +23,9 @@ browser-network/
 The Browser Network MCP Solution consists of three main components:
 
 ### 1. Browser Extension
+
 A Chrome/Firefox extension that captures network traffic from the browser, including:
+
 - HTTP/HTTPS requests and responses
 - Request/response headers
 - Request/response bodies
@@ -31,14 +33,18 @@ A Chrome/Firefox extension that captures network traffic from the browser, inclu
 - Status codes and error details
 
 ### 2. Node Server (Middleware)
+
 A Node.js server that facilitates communication between the browser extension and the MCP server:
+
 - WebSocket connection to receive data from the browser extension
 - Data processing and formatting
 - Communication bridge to the MCP server
 - Temporary data storage and caching
 
 ### 3. MCP Server
+
 An MCP server that provides tools for AI agents to interact with the captured network data:
+
 - Search and filter network requests
 - Analyze request patterns
 - Extract specific data from requests/responses

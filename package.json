@@ -39,7 +39,12 @@
     "node": ">=18.0.0"
   },
   "packageManager": "yarn@1.22.21",
-  "keywords": ["mcp", "browser", "network", "extension"],
+  "keywords": [
+    "mcp",
+    "browser",
+    "network",
+    "extension"
+  ],
   "author": "",
   "license": "MIT"
 }
