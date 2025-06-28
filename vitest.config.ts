@@ -12,6 +12,7 @@ export default defineConfig({
         'dist/**',
         '**/*.d.ts',
         '**/*.config.*',
+        '.eslintrc.cjs',
         '**/mockData/**',
         '**/*.test.ts',
         '**/*.spec.ts',
