@@ -56,25 +56,36 @@ NetBridge MCP enables AI agents to effectively work with browser network traffic
 
 ```
 netbridge-mcp/
-├── packages/
+├── domains/                   # Business capabilities
+│   ├── traffic-capture/
+│   │   └── src/
+│   │       ├── *.ts          # Domain logic
+│   │       └── *.test.ts     # Colocated tests
+│   ├── traffic-storage/
+│   │   └── src/
+│   │       ├── *.ts          # Domain logic
+│   │       └── *.test.ts     # Colocated tests
+│   └── traffic-query/
+│       └── src/
+│           ├── *.ts          # Domain logic
+│           └── *.test.ts     # Colocated tests
+├── apps/                      # Deployable applications
 │   ├── browser-extension/
 │   │   ├── src/
-│   │   │   ├── *.ts         # Source files
-│   │   │   └── *.test.ts    # Colocated test files
+│   │   │   ├── *.ts          # App-specific code
+│   │   │   └── *.test.ts     # Colocated tests
 │   │   └── package.json
 │   ├── node-server/
 │   │   ├── src/
-│   │   │   ├── *.ts         # Source files
-│   │   │   └── *.test.ts    # Colocated test files
+│   │   │   ├── *.ts          # App-specific code
+│   │   │   └── *.test.ts     # Colocated tests
 │   │   └── package.json
 │   └── mcp-server/
 │       ├── src/
-│       │   ├── *.ts         # Source files
-│       │   └── *.test.ts    # Colocated test files
+│       │   ├── *.ts          # App-specific code
+│       │   └── *.test.ts     # Colocated tests
 │       └── package.json
-├── shared/
-│   ├── schemas/        # Shared Zod schemas
-│   └── types/          # Derived TypeScript types
+├── shared/                    # Cross-cutting concerns
 └── docs/
 ```
 
@@ -82,7 +93,7 @@ netbridge-mcp/
 
 - **Colocated tests**: Test files are placed next to source files with `.test.ts` or `.spec.ts` suffix
 - **Tests define behavior**: Each test documents a specific business requirement
-- **Real schemas only**: Import schemas from production code, never redefine in tests
+- **Shared code reuse**: Import shared logic from production code, never duplicate in tests
 - **Test data factories**: Create functions that generate test data with sensible defaults
 - **Override capability**: Allow partial overrides for specific test scenarios
 - **Builder pattern**: Consider for very complex test objects
@@ -135,7 +146,7 @@ The project uses husky and lint-staged to ensure code quality before commits:
 - All data remains immutable
 - Functions are small and pure
 - Options objects used for multi-parameter functions
-- Tests use real schemas from shared modules
+- Tests reuse production code, no duplication
 
 ### Commit Guidelines
 

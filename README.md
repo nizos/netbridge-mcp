@@ -11,17 +11,19 @@ Enables AI agents to access and analyze browser network traffic effectively. Thi
 
 ## Project Structure
 
-This project uses a monorepo structure with Yarn workspaces:
+This project uses a domain-driven design with a monorepo structure:
 
 ```
 netbridge-mcp/
-├── packages/
-│   ├── browser-extension/   # Chrome/Firefox extension
+├── domains/                # Business logic organized by capability
+│   ├── traffic-capture/    # Capturing network traffic
+│   ├── traffic-storage/    # Storing and indexing traffic
+│   └── traffic-query/      # Searching and filtering traffic
+├── apps/                   # Deployable applications
+│   ├── browser-extension/  # Chrome/Firefox extension
 │   ├── node-server/        # WebSocket middleware server
 │   └── mcp-server/         # MCP protocol server
-├── shared/
-│   ├── schemas/            # Shared Zod schemas
-│   └── types/              # Derived TypeScript types
+├── shared/                 # Cross-cutting concerns
 └── docs/                   # Documentation
 ```
 

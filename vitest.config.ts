@@ -24,7 +24,12 @@ export default defineConfig({
         statements: 80,
       },
     },
-    include: ['packages/*/src/**/*.test.ts', 'packages/*/src/**/*.spec.ts'],
+    include: [
+      'apps/*/src/**/*.test.ts',
+      'apps/*/src/**/*.spec.ts',
+      'domains/*/src/**/*.test.ts',
+      'domains/*/src/**/*.spec.ts',
+    ],
     exclude: ['node_modules', 'dist', 'coverage'],
   },
 })
