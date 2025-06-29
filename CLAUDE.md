@@ -152,8 +152,10 @@ Use GitHub Issues for tracking larger work items (features, bugs, documentation)
 - **Create issues**: When planning reveals significant work items, use structured format:
   - Title: Brief description (e.g., "add network request filtering")
   - Body: Description (why/what), Tasks (checklist), Goal (success criteria)
-  - Labels: `feature`, `bug`, or `documentation`
-- **Track progress**: Update task checkboxes and move issues through board columns
+  - Labels: `feature`, `enhancement`, `bug`, or `documentation`
+- **Track progress**: Update task checkboxes and move issues through board columns:
+  - When starting: Move to "In Progress" column
+  - When complete: Ensure all tasks are checked off before moving to "Done" column
 - **Link work**: Reference issues in commits using `#[issue-number]`
 
 ### Key Commands
@@ -161,6 +163,10 @@ Use GitHub Issues for tracking larger work items (features, bugs, documentation)
 - **Create issue**: `gh issue create --title "..." --body "..." --label "..."`
 - **Add to project**: `gh project item-add 1 --owner nizos --url [issue-url]`
 - **Update tasks**: `gh issue edit [number] --body "..."`
+- **Move to column**: `gh project item-edit --project-id PVT_kwHOAQLxys4A8piC --id [item-id] --field-id PVTSSF_lAHOAQLxys4A8piCzgwlckc --single-select-option-id [option-id]`
+  - Todo: `f75ad846`
+  - In Progress: `47fc9ee4`
+  - Done: `98236657`
 
 ## Error Handling
 
