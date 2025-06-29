@@ -8,7 +8,16 @@ NetBridge MCP enables AI agents to effectively work with browser network traffic
 
 ## Core Development Principles
 
-### 1. Test-Driven Development (TDD)
+### Domain-Driven Design (DDD) & Agile Methodology
+
+- **Business behavior first**: Focus on what the system does for users, not technical implementation
+- **Value-driven development**: Prioritize features by business value, deliver working software early
+- **Vertical slices**: Complete end-to-end functionality before adding breadth
+- **MVP mindset**: Establish connections and prove concepts before adding features
+- **Emergent design**: Let architecture evolve based on real needs, not speculation
+- **Theory of Constraints**: Identify and address bottlenecks that limit value delivery
+
+### Test-Driven Development (TDD)
 
 - **Tests always come first**: Write failing tests before any implementation code - no exceptions
 - **Red-Green-Refactor cycle**:
@@ -18,7 +27,7 @@ NetBridge MCP enables AI agents to effectively work with browser network traffic
 - **Behavior-focused testing**: Test what the system does, not how it's implemented
 - **Black box testing**: Test public APIs only, internal implementation is invisible
 
-### 2. TypeScript & Schema-First Development
+### TypeScript & Schema-First Development
 
 - **Zero tolerance for `any`**: Never use `any` types or type assertions - use `unknown` when type is genuinely unknown
 - **Schema-first approach**: Define schemas using Zod (or other Standard Schema compliant libraries), then derive types
@@ -26,15 +35,17 @@ NetBridge MCP enables AI agents to effectively work with browser network traffic
 - **Runtime validation**: Parse all external data through schemas at system boundaries
 - **Single source of truth**: Define each schema once, derive types using inference
 
-### 3. Functional Programming Patterns
+### Functional Programming & Architecture Patterns
 
 - **Immutability by default**: Data structures are never modified after creation
 - **Pure functions only**: Same input always produces same output, no side effects
 - **Function composition**: Build complex behavior by composing simple, focused functions
 - **Small functions**: Each function does one thing well, typically under 10 lines
 - **Flat structure**: Maximum nesting depth of 2 levels, use early returns and guard clauses
+- **Event-driven communication**: Decouple components through events and messages
+- **Functional core, imperative shell**: Business logic stays pure, I/O at boundaries
 
-### 4. Function Design
+### Function Design
 
 - **Options objects by default**: Functions accept a single options object instead of multiple parameters
 - **Avoid boolean flags**: Replace with descriptive string unions or separate options
@@ -75,6 +86,8 @@ netbridge-mcp/
 - **Test data factories**: Create functions that generate test data with sensible defaults
 - **Override capability**: Allow partial overrides for specific test scenarios
 - **Builder pattern**: Consider for very complex test objects
+- **Business-focused tests**: Test names describe business value, not technical details
+- **Vertical testing**: Test complete user journeys through the system
 
 ## Development Workflow
 
@@ -144,7 +157,7 @@ The message should help future developers understand why this change was necessa
 
 ## GitHub Issues & Project Management
 
-Use GitHub Issues for tracking larger work items (features, bugs, documentation) on the "NetBridge MCP Development" project board (ID: 1). Continue using TodoWrite/TodoRead for granular task tracking within each issue.
+Use GitHub Issues for tracking business-focused work items (features, bugs, documentation) on the "NetBridge MCP Development" project board (ID: 1). Issues should describe business needs and expected behavior, not implementation details. Continue using TodoWrite/TodoRead for granular task tracking within each issue.
 
 ### Issue Workflow
 
@@ -175,6 +188,14 @@ Use GitHub Issues for tracking larger work items (features, bugs, documentation)
 - **Early returns**: Handle errors as early as possible
 - **Meaningful context**: Provide helpful error messages
 - **Parse don't validate**: Use schema parsing for input validation
+
+## Design Philosophy
+
+- **Simplicity over complexity**: Choose the simplest solution that delivers value
+- **YAGNI (You Aren't Gonna Need It)**: Build only what's needed now
+- **Iterate and learn**: Each iteration provides insights for the next
+- **Constraint-driven**: Work within limits to force creative solutions
+- **Rapid feedback loops**: Deploy early, test with real usage, adapt quickly
 
 ## Key Reminders
 
