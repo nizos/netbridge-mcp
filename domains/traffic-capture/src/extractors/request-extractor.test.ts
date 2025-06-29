@@ -1,16 +1,20 @@
 import { describe, expect, it } from 'vitest'
 
+import {
+  createTestBrowserRequest,
+  TEST_API_URL,
+  TEST_TIMESTAMP,
+  TEST_USER_AGENTS,
+  TEST_AUTH_TOKENS,
+} from '../test-factories'
+
 import { extractNetworkRequest } from './request-extractor'
 
 describe('Browser request extraction', () => {
   it('converts browser request ID to domain ID', () => {
-    const browserRequest = {
+    const browserRequest = createTestBrowserRequest({
       requestId: 'browser-req-123',
-      url: 'https://api.example.com/data',
-      method: 'GET',
-      timeStamp: 1735464000000,
-      requestHeaders: [],
-    }
+    })
 
     const result = extractNetworkRequest(browserRequest)
 
@@ -18,27 +22,19 @@ describe('Browser request extraction', () => {
   })
 
   it('preserves request URL for traffic analysis', () => {
-    const browserRequest = {
-      requestId: 'req-1',
-      url: 'https://api.example.com/data?query=test',
-      method: 'GET',
-      timeStamp: 1735464000000,
-      requestHeaders: [],
-    }
+    const browserRequest = createTestBrowserRequest({
+      url: `${TEST_API_URL}?query=test`,
+    })
 
     const result = extractNetworkRequest(browserRequest)
 
-    expect(result.url).toBe('https://api.example.com/data?query=test')
+    expect(result.url).toBe(`${TEST_API_URL}?query=test`)
   })
 
   it('captures HTTP method for request categorization', () => {
-    const browserRequest = {
-      requestId: 'req-1',
-      url: 'https://api.example.com/data',
+    const browserRequest = createTestBrowserRequest({
       method: 'POST',
-      timeStamp: 1735464000000,
-      requestHeaders: [],
-    }
+    })
 
     const result = extractNetworkRequest(browserRequest)
 
@@ -46,85 +42,67 @@ describe('Browser request extraction', () => {
   })
 
   it('converts browser timestamp to standard format', () => {
-    const browserRequest = {
-      requestId: 'req-1',
-      url: 'https://api.example.com/data',
-      method: 'GET',
-      timeStamp: 1735464000000,
-      requestHeaders: [],
-    }
+    const browserRequest = createTestBrowserRequest()
 
     const result = extractNetworkRequest(browserRequest)
 
-    expect(result.timestamp).toBe(1735464000000)
+    expect(result.timestamp).toBe(TEST_TIMESTAMP)
   })
 
   it('converts browser headers to standard format', () => {
-    const browserRequest = {
-      requestId: 'req-1',
-      url: 'https://api.example.com/data',
-      method: 'GET',
-      timeStamp: 1735464000000,
+    const browserRequest = createTestBrowserRequest({
       requestHeaders: [
         { name: 'Content-Type', value: 'application/json' },
-        { name: 'User-Agent', value: 'Mozilla/5.0' },
-        { name: 'Authorization', value: 'Bearer token123' },
+        { name: 'User-Agent', value: TEST_USER_AGENTS.MOZILLA },
+        { name: 'Authorization', value: TEST_AUTH_TOKENS.BEARER },
       ],
-    }
+    })
 
     const result = extractNetworkRequest(browserRequest)
 
     expect(result.headers).toEqual({
       'Content-Type': 'application/json',
-      'User-Agent': 'Mozilla/5.0',
-      Authorization: 'Bearer token123',
+      'User-Agent': TEST_USER_AGENTS.MOZILLA,
+      Authorization: TEST_AUTH_TOKENS.BEARER,
     })
   })
 
   it('handles empty header list', () => {
-    const browserRequest = {
-      requestId: 'req-1',
-      url: 'https://api.example.com/data',
-      method: 'GET',
-      timeStamp: 1735464000000,
-      requestHeaders: [],
-    }
+    const browserRequest = createTestBrowserRequest()
 
     const result = extractNetworkRequest(browserRequest)
 
     expect(result.headers).toEqual({})
   })
 
-  it('preserves header case sensitivity', () => {
-    const browserRequest = {
-      requestId: 'req-1',
-      url: 'https://api.example.com/data',
-      method: 'GET',
-      timeStamp: 1735464000000,
-      requestHeaders: [
-        { name: 'X-Custom-Header', value: 'custom-value' },
-        { name: 'x-another-header', value: 'another-value' },
-      ],
-    }
+  it('preserves uppercase header names', () => {
+    const browserRequest = createTestBrowserRequest({
+      requestHeaders: [{ name: 'X-Custom-Header', value: 'custom-value' }],
+    })
 
     const result = extractNetworkRequest(browserRequest)
 
     expect(result.headers['X-Custom-Header']).toBe('custom-value')
+  })
+
+  it('preserves lowercase header names', () => {
+    const browserRequest = createTestBrowserRequest({
+      requestHeaders: [{ name: 'x-another-header', value: 'another-value' }],
+    })
+
+    const result = extractNetworkRequest(browserRequest)
+
     expect(result.headers['x-another-header']).toBe('another-value')
   })
 
   it('handles duplicate header names by using last value', () => {
-    const browserRequest = {
-      requestId: 'req-1',
-      url: 'https://api.example.com/data',
-      method: 'GET',
-      timeStamp: 1735464000000,
+    const browserRequest = createTestBrowserRequest({
       requestHeaders: [
         { name: 'X-Test', value: 'first' },
         { name: 'X-Test', value: 'second' },
         { name: 'X-Test', value: 'last' },
       ],
-    }
+    })
 
     const result = extractNetworkRequest(browserRequest)
 

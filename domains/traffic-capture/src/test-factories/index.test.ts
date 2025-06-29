@@ -1,13 +1,17 @@
 import { describe, it, expect } from 'vitest'
 
-import { createTestNetworkRequest, createTestNetworkResponse } from './index'
+import {
+  createTestNetworkRequest,
+  createTestNetworkResponse,
+  TEST_REQUEST_ID,
+} from './index'
 
 describe('Test Factories', () => {
   describe('createTestNetworkRequest', () => {
     it('creates a network request with default values', () => {
       const request = createTestNetworkRequest()
 
-      expect(request.id).toMatch(/^req-test-[a-z0-9]+$/)
+      expect(request.id).toBe(TEST_REQUEST_ID)
     })
 
     it('allows overriding default values', () => {

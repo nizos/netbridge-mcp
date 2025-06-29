@@ -1,6 +1,12 @@
-import { describe, expect, it } from 'vitest'
+import { beforeEach, describe, expect, it } from 'vitest'
 
-import { HttpMethod } from '../models/value-objects'
+import {
+  createTestRawRequest,
+  createTestRawResponse,
+  TEST_REQUEST_ID,
+  TEST_ERRORS,
+  TEST_HEADERS,
+} from '../test-factories'
 
 import {
   captureRequest,
@@ -8,127 +14,74 @@ import {
   captureError,
 } from './capture-service'
 
+const requestId = TEST_REQUEST_ID
+
 describe('Network traffic capture', () => {
   describe('Request capture', () => {
+    let request: ReturnType<typeof createTestRawRequest>
+    let events: ReturnType<typeof captureRequest>
+
+    beforeEach(() => {
+      request = createTestRawRequest()
+      events = captureRequest(request)
+    })
+
     it('produces single event per request', () => {
-      const request = {
-        id: 'req-123',
-        timestamp: Date.now(),
-        method: 'GET',
-        url: 'https://api.example.com/data',
-        headers: {},
-      }
-
-      const events = captureRequest(request)
-
       expect(events).toHaveLength(1)
     })
 
     it('marks event as request capture type', () => {
-      const request = {
-        id: 'req-123',
-        timestamp: Date.now(),
-        method: 'GET',
-        url: 'https://api.example.com/data',
-        headers: {},
-      }
-
-      const events = captureRequest(request)
-
       expect(events[0]?.type).toBe('request-captured')
     })
 
     it('correlates event with request ID', () => {
-      const request = {
-        id: 'req-123',
-        timestamp: Date.now(),
-        method: HttpMethod.GET,
-        url: 'https://api.example.com/data',
-        headers: { 'Content-Type': 'application/json' },
-      }
-
-      const events = captureRequest(request)
-
-      expect(events[0]?.correlationId).toBe('req-123')
+      expect(events[0]?.correlationId).toBe(requestId)
     })
 
     it('validates and transforms raw request data', () => {
-      const request = {
-        id: 'req-123',
-        timestamp: Date.now(),
-        method: HttpMethod.GET,
-        url: 'https://api.example.com/data',
-        headers: { 'Content-Type': 'application/json' },
-      }
-
-      const events = captureRequest(request)
       const event = events[0]
 
       expect(event?.type).toBe('request-captured')
       if (event?.type === 'request-captured') {
-        expect(event.payload.request.id).toBe('req-123')
+        expect(event.payload.request.id).toBe(requestId)
       }
     })
   })
 
   describe('Response capture', () => {
+    let response: ReturnType<typeof createTestRawResponse>
+    let events: ReturnType<typeof captureResponse>
+
+    beforeEach(() => {
+      response = createTestRawResponse()
+      events = captureResponse({ requestId, rawResponse: response })
+    })
+
     it('produces single event per response', () => {
-      const response = {
-        status: 200,
-        statusText: 'OK',
-        headers: { 'Content-Type': 'application/json' },
-        body: { data: 'test' },
-      }
-
-      const events = captureResponse({
-        requestId: 'req-123',
-        rawResponse: response,
-      })
-
       expect(events).toHaveLength(1)
     })
 
     it('marks event as response capture type', () => {
-      const response = {
-        status: 200,
-        statusText: 'OK',
-        headers: { 'Content-Type': 'application/json' },
-        body: { data: 'test' },
-      }
-
-      const events = captureResponse({
-        requestId: 'req-123',
-        rawResponse: response,
-      })
-
       expect(events[0]?.type).toBe('response-captured')
     })
 
     it('links response to original request', () => {
-      const requestId = 'req-123'
-      const response = {
-        status: 200,
-        statusText: 'OK',
-        headers: { 'Content-Type': 'application/json' },
-        body: { data: 'test' },
-      }
-
-      const events = captureResponse({ requestId, rawResponse: response })
-
-      expect(events[0]?.correlationId).toBe('req-123')
+      expect(events[0]?.correlationId).toBe(requestId)
     })
 
     it('validates and transforms raw response data', () => {
-      const requestId = 'req-123'
-      const response = {
+      const customResponse = createTestRawResponse({
         status: 404,
         statusText: 'Not Found',
-        headers: { 'Content-Type': 'text/plain' },
+        headers: TEST_HEADERS.TEXT,
         body: 'Resource not found',
-      }
+      })
 
-      const events = captureResponse({ requestId, rawResponse: response })
-      const event = events[0]
+      const customEvents = captureResponse({
+        requestId,
+        rawResponse: customResponse,
+      })
+      const event = customEvents[0]
 
       expect(event?.type).toBe('response-captured')
       if (event?.type === 'response-captured') {
@@ -140,42 +93,42 @@ describe('Network traffic capture', () => {
 
   describe('Error capture', () => {
     it('produces single event per error', () => {
-      const requestId = 'req-123'
-      const error = 'Network timeout'
-
-      const events = captureError({ requestId, error })
+      const events = captureError({
+        requestId,
+        error: TEST_ERRORS.NETWORK_TIMEOUT,
+      })
 
       expect(events).toHaveLength(1)
     })
 
     it('marks event as capture error type', () => {
-      const requestId = 'req-123'
-      const error = 'Network timeout'
-
-      const events = captureError({ requestId, error })
+      const events = captureError({
+        requestId,
+        error: TEST_ERRORS.NETWORK_TIMEOUT,
+      })
 
       expect(events[0]?.type).toBe('capture-error')
     })
 
     it('associates error with request', () => {
-      const requestId = 'req-123'
-      const error = 'Connection refused'
+      const events = captureError({
+        requestId,
+        error: TEST_ERRORS.CONNECTION_REFUSED,
+      })
 
-      const events = captureError({ requestId, error })
-
-      expect(events[0]?.correlationId).toBe('req-123')
+      expect(events[0]?.correlationId).toBe(requestId)
     })
 
     it('preserves error message for troubleshooting', () => {
-      const requestId = 'req-123'
-      const error = 'SSL certificate verification failed'
-
-      const events = captureError({ requestId, error })
+      const events = captureError({
+        requestId,
+        error: TEST_ERRORS.SSL_CERT_FAILED,
+      })
       const event = events[0]
 
       expect(event?.type).toBe('capture-error')
       if (event?.type === 'capture-error') {
-        expect(event.payload.error).toBe('SSL certificate verification failed')
+        expect(event.payload.error).toBe(TEST_ERRORS.SSL_CERT_FAILED)
       }
     })
   })

@@ -1,14 +1,12 @@
 import { describe, expect, it } from 'vitest'
 
+import { createTestBrowserResponse } from '../test-factories'
+
 import { extractNetworkResponse } from './response-extractor'
 
 describe('Browser response extraction', () => {
   it('captures HTTP status code for response analysis', () => {
-    const browserResponse = {
-      status: 200,
-      statusText: 'OK',
-      responseHeaders: [],
-    }
+    const browserResponse = createTestBrowserResponse()
 
     const result = extractNetworkResponse(browserResponse)
 
@@ -16,11 +14,10 @@ describe('Browser response extraction', () => {
   })
 
   it('preserves status text for debugging', () => {
-    const browserResponse = {
+    const browserResponse = createTestBrowserResponse({
       status: 404,
       statusText: 'Not Found',
-      responseHeaders: [],
-    }
+    })
 
     const result = extractNetworkResponse(browserResponse)
 
@@ -28,11 +25,10 @@ describe('Browser response extraction', () => {
   })
 
   it('handles non-standard status codes', () => {
-    const browserResponse = {
+    const browserResponse = createTestBrowserResponse({
       status: 999,
       statusText: 'Custom Status',
-      responseHeaders: [],
-    }
+    })
 
     const result = extractNetworkResponse(browserResponse)
 
@@ -40,11 +36,9 @@ describe('Browser response extraction', () => {
   })
 
   it('processes empty status text', () => {
-    const browserResponse = {
-      status: 200,
+    const browserResponse = createTestBrowserResponse({
       statusText: '',
-      responseHeaders: [],
-    }
+    })
 
     const result = extractNetworkResponse(browserResponse)
 
