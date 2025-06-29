@@ -104,6 +104,7 @@ netbridge-mcp/
 - **Override capability**: Allow partial overrides for specific test scenarios
 - **Builder pattern**: Consider for very complex test objects
 - **Business-focused tests**: Test names describe business value, not technical details
+- **Test naming**: Avoid 'should' in test names - use active voice
 - **Vertical testing**: Test complete user journeys through the system
 
 ## Development Workflow
