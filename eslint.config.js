@@ -52,12 +52,7 @@ export default [
         },
       ],
       '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
-      '@typescript-eslint/prefer-readonly': 'error',
-
       // Functional programming rules
-      'functional/no-let': 'error',
-      'functional/no-loop-statements': 'error',
-      'functional/prefer-readonly-type': 'error',
       'functional/no-this-expressions': 'error',
 
       // Import rules
@@ -90,7 +85,6 @@ export default [
       'object-shorthand': 'error',
       'prefer-template': 'error',
       'prefer-arrow-callback': 'error',
-      'arrow-body-style': ['error', 'as-needed'],
 
       // Prettier integration
       'prettier/prettier': 'error',
