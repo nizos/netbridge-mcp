@@ -117,36 +117,48 @@ type RequestIndex = {
 
 ## Initial GitHub Issues (Phase 1)
 
-Following our philosophy of focusing on business needs and behavior rather than technical details, these issues describe what the system should do, not how it's implemented.
+Following our philosophy of focusing on business needs and behavior rather than technical details, these issues describe what the system should do, not how it's implemented. Each issue now focuses on domain capabilities rather than technical components.
 
-### 1. Setup Shared Schemas and Types (#13)
+### 1. Define Core Domain Models (#13)
 
-- Create base schemas for network data
-- Configure schema exports and type generation
-- Establish validation patterns
+- Create NetworkRequest and NetworkResponse models
+- Define essential value objects (HttpMethod, Headers)
+- Models emerge from use cases, not upfront design
+- Include validation as domain logic
 
-### 2. Basic Browser Extension (#14)
+### 2. Implement Traffic Capture Domain (#14)
 
-- Capture fetch/XHR requests
-- Extract essential request data
-- Establish WebSocket client
+- Define what "capturing traffic" means in business terms
+- Implement capture service with pure business logic
+- Browser extension becomes thin adapter
+- Separate transport from capture logic
 
-### 3. Node WebSocket Server (#15)
+### 3. Implement Traffic Storage Domain (#15)
 
-- Accept connections from extension
-- Store requests in memory
-- Basic request management
+- Define storage concepts and policies
+- Implement memory-based repository
+- Create indexing for efficient retrieval
+- Transport infrastructure kept separate
 
-### 4. Minimal MCP Server (#16)
+### 4. Implement Agent Interface Domain (#16)
 
-- Implement basic MCP server setup
-- Create "get-last-request" tool
-- Test with Claude Desktop
+- Define how AI agents interact with traffic data
+- Implement "get-last-request" as domain operation
+- MCP server becomes thin protocol adapter
+- Focus on AI-friendly response formatting
 
-### 5. End-to-End Integration Test (#17)
+### 5. Implement Traffic Query Domain (#19)
 
-- Verify data flows correctly
-- Test with real browser requests
+- Define query and filter concepts
+- Create composable query operations
+- Support for finding last request
+- Foundation for future search capabilities
+
+### 6. End-to-End Integration Test (#17)
+
+- Verify complete domain integration
+- Test data flow through all domains
+- Validate infrastructure adapters
 - Document setup process
 
 ## Success Metrics
@@ -158,10 +170,12 @@ Following our philosophy of focusing on business needs and behavior rather than 
 
 ## Next Steps
 
-1. Create GitHub issues for Phase 1 features
-2. Begin with shared schemas (test-first)
-3. Implement components in parallel where possible
-4. Focus on vertical slice completion (full flow working early)
+1. Create GitHub issues for Phase 1 features ✓
+2. Restructure project for DDD ✓
+3. Begin with domain models (test-first)
+4. Implement domains incrementally
+5. Keep infrastructure adapters thin
+6. Focus on vertical slices within domains
 
 This approach prioritizes:
 
