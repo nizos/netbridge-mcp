@@ -1,0 +1,24 @@
+{
+  "name": "@netbridge-mcp/traffic-capture",
+  "version": "1.0.0",
+  "description": "Domain logic for capturing network traffic",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "type-check": "tsc --noEmit",
+    "clean": "rm -rf dist coverage"
+  },
+  "dependencies": {
+    "zod": "^3.25.67"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.7",
+    "typescript": "^5.3.3",
+    "vitest": "^3.2.4"
+  }
+}
