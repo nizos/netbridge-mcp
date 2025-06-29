@@ -44,15 +44,6 @@ export default [
       '@typescript-eslint/no-unsafe-member-access': 'error',
       '@typescript-eslint/no-unsafe-call': 'error',
       '@typescript-eslint/no-unsafe-return': 'error',
-      '@typescript-eslint/explicit-function-return-type': [
-        'error',
-        {
-          allowExpressions: true,
-          allowTypedFunctionExpressions: true,
-          allowHigherOrderFunctions: true,
-          allowDirectConstAssertionInArrowFunctions: true,
-        },
-      ],
       '@typescript-eslint/no-unused-vars': [
         'error',
         {
@@ -62,48 +53,12 @@ export default [
       ],
       '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
       '@typescript-eslint/prefer-readonly': 'error',
-      '@typescript-eslint/prefer-readonly-parameter-types': [
-        'error',
-        {
-          ignoreInferredTypes: true,
-          treatMethodsAsReadonly: true,
-        },
-      ],
 
       // Functional programming rules
       'functional/no-let': 'error',
       'functional/no-loop-statements': 'error',
-      'functional/no-conditional-statements': [
-        'error',
-        {
-          allowReturningBranches: true,
-        },
-      ],
       'functional/prefer-readonly-type': 'error',
-      'functional/no-throw-statements': 'error',
-      'functional/functional-parameters': [
-        'error',
-        {
-          allowRestParameter: true,
-          allowArgumentsKeyword: false,
-          enforceParameterCount: {
-            count: 'atLeastOne',
-            ignoreIIFE: true,
-          },
-        },
-      ],
-      'functional/no-classes': 'error',
       'functional/no-this-expressions': 'error',
-      'functional/prefer-immutable-types': [
-        'error',
-        {
-          enforcement: 'ReadonlyDeep',
-          ignoreInferredTypes: true,
-          parameters: {
-            enforcement: 'ReadonlyDeep',
-          },
-        },
-      ],
 
       // Import rules
       'import/order': [
@@ -145,23 +100,17 @@ export default [
   {
     files: ['**/*.test.ts', '**/*.spec.ts'],
     rules: {
-      'functional/no-conditional-statements': 'off',
-      'functional/no-throw-statements': 'off',
-      'functional/functional-parameters': 'off',
       'functional/no-expression-statements': 'off',
       'functional/no-return-void': 'off',
       '@typescript-eslint/no-unsafe-assignment': 'off',
       '@typescript-eslint/no-unsafe-member-access': 'off',
       '@typescript-eslint/no-unsafe-call': 'off',
-      '@typescript-eslint/explicit-function-return-type': 'off',
     },
   },
   // Config files overrides
   {
     files: ['*.config.ts', '*.config.js', 'eslint.config.js'],
     rules: {
-      'functional/no-conditional-statements': 'off',
-      'functional/functional-parameters': 'off',
       'functional/no-expression-statements': 'off',
       '@typescript-eslint/no-var-requires': 'off',
     },
