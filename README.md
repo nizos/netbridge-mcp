@@ -27,7 +27,7 @@ netbridge-mcp/
 
 ## Overview
 
-The Browser Network MCP Solution consists of three main components:
+NetBridge MCP consists of three main components:
 
 ### 1. Browser Extension
 

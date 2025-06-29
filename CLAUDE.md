@@ -1,10 +1,10 @@
 # Claude Development Guidelines
 
-This document provides guidelines for AI assistants working on the Browser Network MCP Solution project.
+This document provides guidelines for AI assistants working on the NetBridge MCP project.
 
 ## Project Overview
 
-The Browser Network MCP Solution enables AI agents to effectively work with browser network traffic data through a three-component architecture: browser extension, node server, and MCP server.
+NetBridge MCP enables AI agents to effectively work with browser network traffic data through a three-component architecture: browser extension, node server, and MCP server.
 
 ## Core Development Principles
 
