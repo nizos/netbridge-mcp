@@ -1,4 +1,3 @@
-import type { ReadonlyDeep } from 'type-fest'
 import { z } from 'zod'
 
 import { HttpMethodSchema } from './value-objects'
@@ -14,7 +13,5 @@ export const NetworkRequestSchema = z.object({
 
 export type NetworkRequest = z.infer<typeof NetworkRequestSchema>
 
-export const createNetworkRequest = (
-  input: unknown
-): ReadonlyDeep<NetworkRequest> =>
-  NetworkRequestSchema.parse(input) as ReadonlyDeep<NetworkRequest>
+export const createNetworkRequest = (input: unknown): NetworkRequest =>
+  NetworkRequestSchema.parse(input)

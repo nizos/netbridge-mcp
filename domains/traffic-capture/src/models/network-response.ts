@@ -1,4 +1,3 @@
-import type { ReadonlyDeep } from 'type-fest'
 import { z } from 'zod'
 
 export const NetworkResponseSchema = z.object({
@@ -14,7 +13,5 @@ export const NetworkResponseSchema = z.object({
 
 export type NetworkResponse = z.infer<typeof NetworkResponseSchema>
 
-export const createNetworkResponse = (
-  input: unknown
-): ReadonlyDeep<NetworkResponse> =>
-  NetworkResponseSchema.parse(input) as ReadonlyDeep<NetworkResponse>
+export const createNetworkResponse = (input: unknown): NetworkResponse =>
+  NetworkResponseSchema.parse(input)
