@@ -6,10 +6,8 @@
 [![Security](https://github.com/nizos/netbridge-mcp/actions/workflows/security.yml/badge.svg)](https://github.com/nizos/netbridge-mcp/actions/workflows/security.yml)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.3-blue.svg)](https://www.typescriptlang.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Yarn](https://img.shields.io/badge/Yarn-1.22-2C8EBB.svg)](https://yarnpkg.com/)
-[![Node](https://img.shields.io/badge/Node-22%2B-339933.svg)](https://nodejs.org/)
 
-A TypeScript-based Model Context Protocol (MCP) solution that enables AI agents to access and analyze browser network traffic effectively. This tool is particularly useful for UI-engine based projects, allowing agents to search and filter through network data without having to read all of it.
+Enables AI agents to access and analyze browser network traffic effectively. This tool is particularly useful for UI-engine based projects, allowing agents to search and filter through network data without having to read all of it.
 
 ## Project Structure
 
