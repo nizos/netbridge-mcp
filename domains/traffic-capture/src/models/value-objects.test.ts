@@ -4,20 +4,16 @@ import { HttpMethod } from './value-objects'
 
 describe('Value Objects', () => {
   describe('HttpMethod', () => {
-    it('should export HTTP method constants', () => {
-      expect(HttpMethod.GET).toBe('GET')
-    })
-
-    it('should export POST method', () => {
-      expect(HttpMethod.POST).toBe('POST')
-    })
-
-    it('should export all standard HTTP methods', () => {
-      expect(HttpMethod.PUT).toBe('PUT')
-      expect(HttpMethod.DELETE).toBe('DELETE')
-      expect(HttpMethod.PATCH).toBe('PATCH')
-      expect(HttpMethod.HEAD).toBe('HEAD')
-      expect(HttpMethod.OPTIONS).toBe('OPTIONS')
+    it.each([
+      ['GET', 'GET'],
+      ['POST', 'POST'],
+      ['PUT', 'PUT'],
+      ['DELETE', 'DELETE'],
+      ['PATCH', 'PATCH'],
+      ['HEAD', 'HEAD'],
+      ['OPTIONS', 'OPTIONS'],
+    ] as const)('exports %s method constant', (method, expected) => {
+      expect(HttpMethod[method]).toBe(expected)
     })
   })
 })

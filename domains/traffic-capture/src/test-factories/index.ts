@@ -12,17 +12,21 @@ import { HttpMethod } from '../models/value-objects'
 
 export const createTestNetworkRequest = (
   overrides?: Partial<ReadonlyDeep<NetworkRequest>>
-): ReadonlyDeep<NetworkRequest> =>
-  createNetworkRequest({
-    id: `req-test-${Date.now()}`,
-    timestamp: Date.now(),
+): ReadonlyDeep<NetworkRequest> => {
+  const defaultRequest = {
+    id: `req-test-${Math.random().toString(36).substring(7)}`,
+    timestamp: 1735464000000,
     method: HttpMethod.GET,
     url: 'https://api.example.com/test',
     headers: {
       'Content-Type': 'application/json',
     },
+  }
+  return createNetworkRequest({
+    ...defaultRequest,
     ...overrides,
   })
+}
 
 export const createTestNetworkResponse = (
   overrides?: Partial<ReadonlyDeep<NetworkResponse>>

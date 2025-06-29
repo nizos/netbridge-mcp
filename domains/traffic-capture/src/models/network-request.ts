@@ -1,15 +1,13 @@
 import type { ReadonlyDeep } from 'type-fest'
 import { z } from 'zod'
 
-const HttpMethodSchema = z
-  .enum(['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'HEAD', 'OPTIONS'])
-  .describe('HTTP method')
+import { HttpMethodSchema } from './value-objects'
 
 export const NetworkRequestSchema = z.object({
-  id: z.string().min(1, 'ID cannot be empty'),
-  timestamp: z.number().positive('Timestamp must be positive'),
+  id: z.string().min(1, 'Invalid id: must not be empty'),
+  timestamp: z.number().positive('Invalid timestamp: must be positive'),
   method: HttpMethodSchema,
-  url: z.string().min(1, 'URL cannot be empty'),
+  url: z.string().min(1, 'Invalid url: must not be empty'),
   headers: z.record(z.string()),
   body: z.unknown().optional(),
 })
@@ -18,7 +16,5 @@ export type NetworkRequest = z.infer<typeof NetworkRequestSchema>
 
 export const createNetworkRequest = (
   input: unknown
-): ReadonlyDeep<NetworkRequest> => {
-  const parsed = NetworkRequestSchema.parse(input)
-  return parsed as ReadonlyDeep<NetworkRequest>
-}
+): ReadonlyDeep<NetworkRequest> =>
+  NetworkRequestSchema.parse(input) as ReadonlyDeep<NetworkRequest>

@@ -1,64 +1,58 @@
+import type { ReadonlyDeep } from 'type-fest'
 import { describe, it, expect } from 'vitest'
 
+import { createTestNetworkResponse } from '../test-factories'
+
 import { createNetworkResponse } from './network-response'
+import type { NetworkResponse } from './network-response'
+
+type TestCase = readonly [
+  keyof NetworkResponse,
+  Partial<ReadonlyDeep<NetworkResponse>>,
+  unknown,
+]
 
 describe('NetworkResponse', () => {
   describe('createNetworkResponse', () => {
-    it('should create a network response with a status', () => {
-      const response = createNetworkResponse({
-        status: 200,
-        statusText: 'OK',
-        headers: {},
-      })
-
-      expect(response.status).toBe(200)
-    })
-
-    it('should create a network response with a statusText', () => {
-      const response = createNetworkResponse({
-        status: 200,
-        statusText: 'OK',
-        headers: {},
-      })
-
-      expect(response.statusText).toBe('OK')
-    })
-
-    it('should create a network response with headers', () => {
-      const response = createNetworkResponse({
-        status: 200,
-        statusText: 'OK',
-        headers: {
+    const testCases: readonly TestCase[] = [
+      ['status', {}, 200],
+      ['statusText', {}, 'OK'],
+      [
+        'headers',
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            'Cache-Control': 'no-cache',
+          },
+        },
+        {
           'Content-Type': 'application/json',
           'Cache-Control': 'no-cache',
         },
-      })
+      ],
+      [
+        'body',
+        { body: { message: 'Success', data: [1, 2, 3] } },
+        { message: 'Success', data: [1, 2, 3] },
+      ],
+    ]
 
-      expect(response.headers).toEqual({
-        'Content-Type': 'application/json',
-        'Cache-Control': 'no-cache',
-      })
-    })
+    it.each(testCases)(
+      'creates a network response with %s',
+      (property, overrides, expected) => {
+        const response = createTestNetworkResponse(overrides)
+        expect(response[property]).toEqual(expected)
+      }
+    )
 
-    it('should throw when status is not a valid HTTP status code', () => {
+    it('throws when status is not a valid HTTP status code', () => {
       expect(() =>
         createNetworkResponse({
           status: 999,
           statusText: 'Invalid',
           headers: {},
         })
-      ).toThrow('Invalid HTTP status code')
-    })
-
-    it('should create a network response with optional body', () => {
-      const response = createNetworkResponse({
-        status: 200,
-        statusText: 'OK',
-        headers: {},
-        body: { message: 'Success', data: [1, 2, 3] },
-      })
-
-      expect(response.body).toEqual({ message: 'Success', data: [1, 2, 3] })
+      ).toThrow('Invalid status: must be between 100 and 599')
     })
   })
 })

@@ -1,3 +1,5 @@
+import { z } from 'zod'
+
 export const HttpMethod = {
   GET: 'GET',
   POST: 'POST',
@@ -9,3 +11,7 @@ export const HttpMethod = {
 } as const
 
 export type HttpMethodType = (typeof HttpMethod)[keyof typeof HttpMethod]
+
+export const HttpMethodSchema = z
+  .enum(['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'HEAD', 'OPTIONS'])
+  .describe('HTTP method')
