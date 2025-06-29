@@ -142,6 +142,26 @@ The project uses husky and lint-staged to ensure code quality before commits:
 
 The message should help future developers understand why this change was necessary, not just describe what files were modified.
 
+## GitHub Issues & Project Management
+
+Use GitHub Issues for tracking larger work items (features, bugs, documentation) on the "NetBridge MCP Development" project board (ID: 1). Continue using TodoWrite/TodoRead for granular task tracking within each issue.
+
+### Issue Workflow
+
+- **Before starting work**: Check existing issues with `gh issue list`
+- **Create issues**: When planning reveals significant work items, use structured format:
+  - Title: Brief description (e.g., "add network request filtering")
+  - Body: Description (why/what), Tasks (checklist), Goal (success criteria)
+  - Labels: `feature`, `bug`, or `documentation`
+- **Track progress**: Update task checkboxes and move issues through board columns
+- **Link work**: Reference issues in commits using `#[issue-number]`
+
+### Key Commands
+
+- **Create issue**: `gh issue create --title "..." --body "..." --label "..."`
+- **Add to project**: `gh project item-add 1 --owner nizos --url [issue-url]`
+- **Update tasks**: `gh issue edit [number] --body "..."`
+
 ## Error Handling
 
 - **Result types**: Make error cases explicit in return types
