@@ -19,11 +19,17 @@ NetBridge MCP enables AI agents to effectively work with browser network traffic
 
 ### Test-Driven Development (TDD)
 
-- **Tests always come first**: Write failing tests before any implementation code - no exceptions
+- **Test-first discipline**: Write exactly one failing test before any implementation
 - **Red-Green-Refactor cycle**:
   - Red: Write a failing test that documents expected business behavior
   - Green: Write minimal code to make the test pass
   - Refactor: Improve the code while keeping tests green
+- **One test at a time**: Complete the full cycle for each test before starting the next
+- **Correct failure reasons**: Tests must fail on assertions, not missing implementations
+  - Wrong: "TypeError: point.add is not a function"
+  - Right: "AssertionError: expected undefined to be 15"
+- **Minimal implementations**: Add only what the current failing test requires
+- **Single assertion rule**: Each test verifies exactly one behavior
 - **Behavior-focused testing**: Test what the system does, not how it's implemented
 - **Black box testing**: Test public APIs only, internal implementation is invisible
 
