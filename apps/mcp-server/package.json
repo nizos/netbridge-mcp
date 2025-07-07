@@ -17,8 +17,8 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.13.2",
-    "zod": "^3.22.4"
+    "@modelcontextprotocol/sdk": "^1.15.0",
+    "zod": "^3.25.75"
   },
   "devDependencies": {
     "tsx": "^4.7.0"
